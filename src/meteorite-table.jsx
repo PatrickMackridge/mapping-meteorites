@@ -7,15 +7,18 @@ const MeteoriteTable = props => {
         <tr>
           <th>Name</th>
           <th>Size</th>
-          <th>Continent</th>
-          <th>Date</th>
+          <th>Geolocation</th>
+          <th>Year</th>
         </tr>
         {props.meteorites.map(meteorite => {
           return (
             <tr key={meteorite.id}>
               <td>{meteorite.name}</td>
               <td>{meteorite.mass}</td>
-              <td>CONTINENT</td>
+              <td>
+                ({meteorite.geolocation.latitude}°,{" "}
+                {meteorite.geolocation.longitude}°)
+              </td>
               <td>{meteorite.year.slice(0, 4)}</td>
             </tr>
           );
