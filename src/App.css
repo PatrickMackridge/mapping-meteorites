@@ -15,7 +15,7 @@ p {
 }
 
 table {
-  border: 5px solid #d9b08c;
+  border: 5px solid #d1e8e2;
   background-color: black;
 }
 
@@ -23,7 +23,7 @@ th,
 td {
   border: 1px solid black;
   border-collapse: collapse;
-  background-color: #ffcb9a;
+  background-color: #d1e8e2;
 }
 
 .tableContainer {
