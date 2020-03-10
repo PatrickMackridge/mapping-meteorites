@@ -105,6 +105,11 @@ class App extends React.Component {
             </select>
           </label>
         </div>
+        {isLoading === false ? (
+          <MakeMap meteorites={meteorites} activeMeteorite={activeMeteorite} />
+        ) : (
+          <p>...loading...</p>
+        )}
         <MakeMap meteorites={meteorites} activeMeteorite={activeMeteorite} />
       </div>
     );
