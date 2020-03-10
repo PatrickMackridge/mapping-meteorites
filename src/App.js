@@ -3,6 +3,8 @@ import "./App.css";
 import MeteoriteTable from "./meteorite-table";
 import { Doughnut } from "react-chartjs-2";
 import { formatDataFromSizes } from "./utils/utils";
+import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import { Icon } from "leaflet";
 
 class App extends React.Component {
   state = {
@@ -60,13 +62,32 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>Meteorite Landings</h1>
-        {this.state.isLoading === false ? (
-          <MeteoriteTable meteorites={this.state.meteorites} />
-        ) : (
-          <p>...loading...</p>
-        )}
-        <Doughnut data={this.state.testDataset} />
+        <div>
+          <h1>Meteorite Landings</h1>
+          {this.state.isLoading === false ? (
+            <MeteoriteTable meteorites={this.state.meteorites} />
+          ) : (
+            <p>...loading...</p>
+          )}
+          <Doughnut data={this.state.testDataset} />
+        </div>
+        <Map center={[0.0, 0.0]} zoom={2}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://osm.org.copyright">OpenStreetMap</a> contributors'
+          />
+          {this.state.meteorites.map(meteorite => {
+            return meteorite.geolocation.latitude !== "unknown" ? (
+              <Marker
+                key={meteorite.id}
+                position={[
+                  meteorite.geolocation.latitude,
+                  meteorite.geolocation.longitude
+                ]}
+              ></Marker>
+            ) : null;
+          })}
+        </Map>
       </div>
     );
   }
