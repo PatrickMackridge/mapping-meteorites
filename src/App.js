@@ -4,13 +4,13 @@ import MeteoriteTable from "./meteorite-table";
 import { Doughnut } from "react-chartjs-2";
 import { formatDataFromSizes } from "./utils/utils";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
-import { Icon } from "leaflet";
 
 class App extends React.Component {
   state = {
     meteorites: [],
     isLoading: true,
-    testDataset: {
+    chartData: {
+      legend: { fontColor: "white", fontSize: 300 },
       labels: ["<1kg", "1kg - 10kg", ">10kg"],
       datasets: [
         {
@@ -27,12 +27,13 @@ class App extends React.Component {
     this.setState({ activeMeteorite: meteorite });
   };
 
-  componentDidMount() {
+  fetchData = () => {
     fetch("https://data.nasa.gov/resource/gh4g-9sfh.json")
       .then(response => {
         return response.json();
       })
       .then(data => {
+        console.log(data.slice(0, 5));
         const tableData = data.map(meteorite => {
           const meteoriteCopy = { ...meteorite };
           if (meteoriteCopy.geolocation === undefined) {
@@ -52,30 +53,33 @@ class App extends React.Component {
           }
           return meteoriteCopy;
         });
-        // .slice(0, 100);
         const sizeData = formatDataFromSizes(tableData);
-        const dataset = { ...this.state.testDataset };
+        const dataset = { ...this.state.chartData };
         dataset.datasets[0].data = sizeData;
         this.setState({
           isLoading: false,
           meteorites: tableData,
-          testDataset: dataset
+          chartData: dataset
         });
       });
+  };
+
+  componentDidMount() {
+    this.fetchData();
   }
 
   render() {
-    const { meteorites, testDataset, activeMeteorite, isLoading } = this.state;
+    const { meteorites, chartData, activeMeteorite, isLoading } = this.state;
     return (
       <div className="App">
-        <div>
+        <div class="tableChart">
           <h1>Meteorite Landings</h1>
           {isLoading === false ? (
             <MeteoriteTable meteorites={meteorites} />
           ) : (
             <p>...loading...</p>
           )}
-          <Doughnut data={testDataset} />
+          <Doughnut data={chartData} width="100%" height="100%" />
         </div>
         <Map center={[0.0, 0.0]} zoom={2}>
           <TileLayer
