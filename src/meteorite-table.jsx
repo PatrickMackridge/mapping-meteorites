@@ -6,7 +6,7 @@ const MeteoriteTable = props => {
       <table>
         <tr>
           <th>Name</th>
-          <th>Size</th>
+          <th>Mass (grams)</th>
           <th>Geolocation</th>
           <th>Year</th>
         </tr>
@@ -16,10 +16,11 @@ const MeteoriteTable = props => {
               <td>{meteorite.name}</td>
               <td>{meteorite.mass}</td>
               <td>
-                ({meteorite.geolocation.latitude}°,{" "}
-                {meteorite.geolocation.longitude}°)
+                ({meteorite.geolocation.latitude}
+                °, {meteorite.geolocation.longitude}
+                °)
               </td>
-              <td>{meteorite.year.slice(0, 4)}</td>
+              <td>{meteorite.year}</td>
             </tr>
           );
         })}
