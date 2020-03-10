@@ -39,3 +39,7 @@ td {
   max-width: 400px;
   margin: auto;
 }
+
+#popup-info {
+  color: #2c3531;
+}

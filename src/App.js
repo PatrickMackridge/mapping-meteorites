@@ -19,7 +19,12 @@ class App extends React.Component {
           hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
         }
       ]
-    }
+    },
+    activeMeteorite: null
+  };
+
+  showMeteoriteData = meteorite => {
+    this.setState({ activeMeteorite: meteorite });
   };
 
   componentDidMount() {
@@ -60,23 +65,24 @@ class App extends React.Component {
   }
 
   render() {
+    const { meteorites, testDataset, activeMeteorite, isLoading } = this.state;
     return (
       <div className="App">
         <div>
           <h1>Meteorite Landings</h1>
-          {this.state.isLoading === false ? (
-            <MeteoriteTable meteorites={this.state.meteorites} />
+          {isLoading === false ? (
+            <MeteoriteTable meteorites={meteorites} />
           ) : (
             <p>...loading...</p>
           )}
-          <Doughnut data={this.state.testDataset} />
+          <Doughnut data={testDataset} />
         </div>
         <Map center={[0.0, 0.0]} zoom={2}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://osm.org.copyright">OpenStreetMap</a> contributors'
           />
-          {this.state.meteorites.map(meteorite => {
+          {meteorites.map(meteorite => {
             return meteorite.geolocation.latitude !== "unknown" ? (
               <Marker
                 key={meteorite.id}
@@ -84,9 +90,33 @@ class App extends React.Component {
                   meteorite.geolocation.latitude,
                   meteorite.geolocation.longitude
                 ]}
+                onClick={() => {
+                  this.showMeteoriteData(meteorite);
+                }}
               ></Marker>
             ) : null;
           })}
+          {activeMeteorite && (
+            <Popup
+              position={[
+                activeMeteorite.geolocation.latitude,
+                activeMeteorite.geolocation.longitude
+              ]}
+              onClose={() => {
+                this.showMeteoriteData(null);
+              }}
+            >
+              <div id="popup-info">
+                <h3>{activeMeteorite.name}</h3>
+                <p id="popup-info">Mass: {activeMeteorite.mass} grams</p>
+                <p id="popup-info">
+                  Geolocation: {activeMeteorite.geolocation.latitude},{" "}
+                  {activeMeteorite.geolocation.longitude}
+                </p>
+                <p id="popup-info">Year: {activeMeteorite.year}</p>
+              </div>
+            </Popup>
+          )}
         </Map>
       </div>
     );
