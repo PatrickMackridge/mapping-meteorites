@@ -1,9 +1,4 @@
 const formatDataFromSizes = arrayOfMeteorites => {
-  //foreach meteroite add property size-range based on size
-  // 1-1000
-  // 1001 - 10000
-  // 10000 +
-
   let result = [0, 0, 0];
 
   arrayOfMeteorites.forEach(meteorite => {

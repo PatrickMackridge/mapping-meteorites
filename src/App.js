@@ -3,20 +3,21 @@ import "./App.css";
 import MeteoriteTable from "./meteorite-table";
 import { Doughnut } from "react-chartjs-2";
 import { formatDataFromSizes } from "./utils/utils";
-import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import MakeMap from "./map";
 
 class App extends React.Component {
   state = {
     meteorites: [],
     isLoading: true,
     chartData: {
-      legend: { fontColor: "white", fontSize: 300 },
       labels: ["<1kg", "1kg - 10kg", ">10kg"],
       datasets: [
         {
+          label: "Meteorite Landings",
           data: [300, 50, 100],
           backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
+          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          borderColor: "rgb(255, 255, 255)"
         }
       ]
     },
@@ -47,7 +48,6 @@ class App extends React.Component {
           } else if (!meteoriteCopy.year) {
             meteoriteCopy.year = "unknown";
           }
-
           if (!meteoriteCopy.mass) {
             meteoriteCopy.mass = "unknown";
           }
@@ -72,8 +72,21 @@ class App extends React.Component {
     const { meteorites, chartData, activeMeteorite, isLoading } = this.state;
     return (
       <div className="App">
-        <div class="tableChart">
-          <h1>Meteorite Landings</h1>
+        <div className="tableChart">
+          <div className="dataHeadings">
+            <h1>Meteorite Landings</h1>
+          </div>
+          <div>
+            <button>Some Data Controls</button>
+            <label htmlFor="">
+              <select id="">
+                <option value="one">One</option>
+                <option value="two">Two</option>
+                <option value="three">Three</option>
+                <option value="etc">etc.</option>
+              </select>
+            </label>
+          </div>
           {isLoading === false ? (
             <MeteoriteTable meteorites={meteorites} />
           ) : (
@@ -81,47 +94,18 @@ class App extends React.Component {
           )}
           <Doughnut data={chartData} width="100%" height="100%" />
         </div>
-        <Map center={[0.0, 0.0]} zoom={2}>
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://osm.org.copyright">OpenStreetMap</a> contributors'
-          />
-          {meteorites.map(meteorite => {
-            return meteorite.geolocation.latitude !== "unknown" ? (
-              <Marker
-                key={meteorite.id}
-                position={[
-                  meteorite.geolocation.latitude,
-                  meteorite.geolocation.longitude
-                ]}
-                onClick={() => {
-                  this.showMeteoriteData(meteorite);
-                }}
-              ></Marker>
-            ) : null;
-          })}
-          {activeMeteorite && (
-            <Popup
-              position={[
-                activeMeteorite.geolocation.latitude,
-                activeMeteorite.geolocation.longitude
-              ]}
-              onClose={() => {
-                this.showMeteoriteData(null);
-              }}
-            >
-              <div id="popup-info">
-                <h3>{activeMeteorite.name}</h3>
-                <p id="popup-info">Mass: {activeMeteorite.mass} grams</p>
-                <p id="popup-info">
-                  Geolocation: {activeMeteorite.geolocation.latitude},{" "}
-                  {activeMeteorite.geolocation.longitude}
-                </p>
-                <p id="popup-info">Year: {activeMeteorite.year}</p>
-              </div>
-            </Popup>
-          )}
-        </Map>
+        <div className="mapHeadings">
+          <button>Some Map Controls</button>
+          <label htmlFor="">
+            <select id="">
+              <option value="one">Map1</option>
+              <option value="two">Map2</option>
+              <option value="three">Map3</option>
+              <option value="etc">etc.</option>
+            </select>
+          </label>
+        </div>
+        <MakeMap meteorites={meteorites} activeMeteorite={activeMeteorite} />
       </div>
     );
   }
