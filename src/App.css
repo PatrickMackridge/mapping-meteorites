@@ -1,6 +1,6 @@
 .App {
   display: grid;
-  grid-template-rows: 1fr 100px 4fr;
+  grid-template-rows: 1fr 30px 4fr;
   text-align: center;
   height: 80%;
   width: 100vw;
@@ -71,5 +71,10 @@ canvas {
   padding: 0;
 }
 
-body {
+label {
+  color: white;
+}
+
+.mapHeadings {
+  max-height: 50px;
 }
