@@ -10,13 +10,25 @@ class App extends React.Component {
     meteorites: [],
     isLoading: true,
     chartData: {
-      labels: ["<1kg", "1kg - 10kg", ">10kg"],
+      labels: [
+        "50kg or less",
+        "51kg-100kg",
+        "101kg - 200kg",
+        "201kg-300kg",
+        ">300kg"
+      ],
       datasets: [
         {
           label: "Meteorite Landings",
-          data: [300, 50, 100],
-          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          data: [],
+          backgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56",
+            "#001cac",
+            "#29ac00"
+          ],
+          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#29ac00"],
           borderColor: "rgb(255, 255, 255)"
         }
       ]
