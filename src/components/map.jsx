@@ -11,6 +11,12 @@ class MakeMap extends React.Component {
     this.setState({ activeMeteorite: meteorite });
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.meteorites !== prevProps.meteorites) {
+      this.setState({ meteorites: this.props.meteorites });
+    }
+  }
+
   render() {
     const { meteorites, activeMeteorite } = this.state;
     return (

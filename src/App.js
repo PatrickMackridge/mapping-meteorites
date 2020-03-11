@@ -88,7 +88,6 @@ class App extends React.Component {
   };
 
   componentDidUpdate(prevState) {
-    console.log(this.state.showLargest100);
     if (
       this.state.showLargest100 === false &&
       this.state.meteorites.length === 100
@@ -131,7 +130,7 @@ class App extends React.Component {
           ) : (
             <p>...loading...</p>
           )}
-          <Doughnut data={chartData} width="100%" height="100%" />
+          <Doughnut data={chartData} width={100} height={100} />
         </div>
       </div>
     );

@@ -14,7 +14,6 @@ const formatDataFromSizes = arrayOfMeteorites => {
       result[4] += 1;
     }
   });
-
   return result;
 };
 
