@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 import MeteoriteTable from "./components/meteorite-table";
-import { formatDataFromSizes } from "./utils/utils";
 import MakeMap from "./components/map";
 import DoDoughnut from "./components/doughnut";
 
@@ -33,7 +32,8 @@ class App extends React.Component {
         }
       ]
     },
-    showLargest100: false
+    showLargest100: false,
+    doughnutDataVal: "sizeRange"
   };
 
   fetchData = () => {
@@ -62,20 +62,12 @@ class App extends React.Component {
           }
           return meteoriteCopy;
         });
-        const sizeData = formatDataFromSizes(tableData);
-        const dataset = { ...this.state.chartData };
-        dataset.datasets[0].data = sizeData;
         this.setState({
           isLoading: false,
-          meteorites: tableData,
-          chartData: dataset
+          meteorites: tableData
         });
       });
   };
-
-  componentDidMount() {
-    this.fetchData();
-  }
 
   getLargest100 = () => {
     this.setState(currentState => {
@@ -87,7 +79,17 @@ class App extends React.Component {
     });
   };
 
-  componentDidUpdate(prevState) {
+  changeDropdown = event => {
+    if (event.target.value !== this.state.doughnutDataVal) {
+      this.setState({ doughnutDataVal: event.target.value });
+    }
+  };
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  componentDidUpdate() {
     if (
       this.state.showLargest100 === false &&
       this.state.meteorites.length === 100
@@ -97,7 +99,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { meteorites, chartData, isLoading } = this.state;
+    const { meteorites, doughnutDataVal, isLoading } = this.state;
     return (
       <div className="App">
         <div className="mapHeadings">
@@ -115,9 +117,9 @@ class App extends React.Component {
               Toggle Largest 100 Only
             </button>
           </div>
-          <label htmlFor="">
-            Doughnut Data:
-            <select id="">
+          <label>
+            Doughnut Data:{" "}
+            <select id="" onChange={this.changeDropdown}>
               <option value="sizeRange">Size Range</option>
               <option value="hemisphere">Hemisphere</option>
               <option value="century">Century</option>
@@ -130,7 +132,11 @@ class App extends React.Component {
           ) : (
             <p>...loading...</p>
           )}
-          <DoDoughnut data={chartData} width={100} height={100} />
+          <DoDoughnut
+            meteorites={meteorites}
+            dropdownVal={doughnutDataVal}
+            isLoading={isLoading}
+          />
         </div>
       </div>
     );

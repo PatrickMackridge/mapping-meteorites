@@ -1,8 +1,8 @@
-import { formatDataFromSizes } from "./utils";
+import { formatSizeData } from "./utils";
 
-describe("formatDataFromSizes", () => {
+describe("formatSizeData", () => {
   it("accepts an empty array and returns an array of [0,0,0]", () => {
-    expect(formatDataFromSizes([])).toEqual([0, 0, 0, 0, 0]);
+    expect(formatSizeData([])).toEqual([0, 0, 0, 0, 0]);
   });
   it("accepts an of objects and sorts into counts of sizes", () => {
     const input = [
@@ -15,6 +15,6 @@ describe("formatDataFromSizes", () => {
       { mass: 2000000 }
     ];
 
-    expect(formatDataFromSizes(input)).toEqual([2, 1, 2, 1, 1]);
+    expect(formatSizeData(input)).toEqual([2, 1, 2, 1, 1]);
   });
 });

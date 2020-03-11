@@ -1,4 +1,4 @@
-const formatDataFromSizes = arrayOfMeteorites => {
+const formatSizeData = arrayOfMeteorites => {
   let result = [0, 0, 0, 0, 0];
 
   arrayOfMeteorites.forEach(meteorite => {
@@ -17,4 +17,4 @@ const formatDataFromSizes = arrayOfMeteorites => {
   return result;
 };
 
-module.exports = { formatDataFromSizes };
+module.exports = { formatSizeData };
