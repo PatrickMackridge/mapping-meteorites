@@ -14,7 +14,7 @@ class MakeMap extends React.Component {
   render() {
     const { meteorites, activeMeteorite } = this.state;
     return (
-      <Map center={[0.0, 0.0]} zoom={2}>
+      <Map center={[20.0, 20.0]} zoom={2}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://osm.org.copyright">OpenStreetMap</a> contributors'

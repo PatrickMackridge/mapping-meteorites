@@ -30,11 +30,9 @@ class App extends React.Component {
   };
 
   fetchData = () => {
-    let query = "";
-    if (this.state.showLargest100 === true) {
-      query = "?$order=mass DESC&$where=mass > 0";
-    }
-    fetch(`https://data.nasa.gov/resource/gh4g-9sfh.json${query}`)
+    fetch(
+      `https://data.nasa.gov/resource/gh4g-9sfh.json?$order=mass DESC&$where=mass > 0`
+    )
       .then(response => {
         return response.json();
       })
@@ -75,36 +73,45 @@ class App extends React.Component {
     this.fetchData();
   }
 
-  // getLargest100 = () => {
-  //   if (!this.state.showLargest100 === true) {
-  //     this.fetchData();
-  //   }
-  //   this.setState(currentState => {
-  //     return { showLargest100: !currentState.showLargest100 };
-  //   });
-  // };
+  getLargest100 = () => {
+    this.setState(currentState => {
+      return { showLargest100: !currentState.showLargest100 };
+    });
+  };
 
-  componentDidUpdate() {}
+  componentDidUpdate(prevState) {
+    if (prevState.showLargest100 !== this.state.showLargest100) {
+      this.fetchData();
+    }
+  }
 
   render() {
     const { meteorites, chartData, activeMeteorite, isLoading } = this.state;
     return (
       <div className="App">
-        <div className="tableChart">
-          <div className="dataHeadings">
-            <h1>Meteorite Landings</h1>
-          </div>
-          <div>
+        <div className="mapHeadings">
+          <h1>Meteorite Landings</h1>
+          <button className="heatButton">Toggle Heat Map</button>
+        </div>
+        {isLoading === false ? (
+          <MakeMap meteorites={meteorites} activeMeteorite={activeMeteorite} />
+        ) : (
+          <p>...loading...</p>
+        )}
+        <div className="dataControls">
+          <div className="largest100Button">
             <button onClick={this.getLargest100}>Toggle Largest 100</button>
-            <label htmlFor="">
-              Doughnut Data:
-              <select id="">
-                <option value="sizeRange">Size Range</option>
-                <option value="hemisphere">Hemisphere</option>
-                <option value="century">Century</option>
-              </select>
-            </label>
           </div>
+          <label htmlFor="">
+            Doughnut Data:
+            <select id="">
+              <option value="sizeRange">Size Range</option>
+              <option value="hemisphere">Hemisphere</option>
+              <option value="century">Century</option>
+            </select>
+          </label>
+        </div>
+        <div className="tableChart">
           {isLoading === false ? (
             <MeteoriteTable meteorites={meteorites} />
           ) : (
@@ -112,15 +119,6 @@ class App extends React.Component {
           )}
           <Doughnut data={chartData} width="100%" height="100%" />
         </div>
-        <div className="mapHeadings">
-          <button>Toggle Heat Map</button>
-        </div>
-        {isLoading === false ? (
-          <MakeMap meteorites={meteorites} activeMeteorite={activeMeteorite} />
-        ) : (
-          <p>...loading...</p>
-        )}
-        <MakeMap meteorites={meteorites} activeMeteorite={activeMeteorite} />
       </div>
     );
   }
