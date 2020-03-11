@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
 import MeteoriteTable from "./components/meteorite-table";
-import { Doughnut } from "react-chartjs-2";
 import { formatDataFromSizes } from "./utils/utils";
 import MakeMap from "./components/map";
+import DoDoughnut from "./components/doughnut";
 
 class App extends React.Component {
   state = {
@@ -130,7 +130,7 @@ class App extends React.Component {
           ) : (
             <p>...loading...</p>
           )}
-          <Doughnut data={chartData} width={100} height={100} />
+          <DoDoughnut data={chartData} width={100} height={100} />
         </div>
       </div>
     );

@@ -1,32 +1,47 @@
-// import React from "react";
-// import { Doughnut } from "react-chartjs-2";
+import React, { Component } from "react";
+import { Doughnut } from "react-chartjs-2";
 
-// const data = {
-//   labels: ["Red", "Green", "Yellow"],
-//   datasets: [
-//     {
-//       data: [300, 50, 100],
-//       backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-//       hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
-//     }
-//   ]
-// };
+class DoDoughnut extends Component {
+  state = {
+    labels: [
+      "50kg or less",
+      "51kg-100kg",
+      "101kg - 200kg",
+      "201kg-300kg",
+      ">300kg"
+    ],
+    datasets: [
+      {
+        label: "Meteorite Landings",
+        data: [],
+        backgroundColor: [
+          "#FF6384",
+          "#36A2EB",
+          "#FFCE56",
+          "#001cac",
+          "#29ac00"
+        ],
+        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#29ac00"],
+        borderColor: "rgb(255, 255, 255)"
+      }
+    ]
+  };
 
-// // const Doughnut = props => {
-// //   return <div className="Doughnut">{PropTypes}</div>;
-// // };
+  formatData = () => {
+    // Format chart data here depending on dropdown menu - Pass dropdown value as props!
+  };
 
-// export default React.createClass({
-//   displayName: "DoughnutExample",
+  componentDidUpdate() {
+    console.log("Dough dat update!");
+  }
 
-//   render() {
-//     return (
-//       <div>
-//         <h2>Doughnut Example</h2>
-//         <Doughnut data={data} />
-//       </div>
-//     );
-//   }
-// });
+  render() {
+    return (
+      <div>
+        <Doughnut />
+      </div>
+    );
+  }
+}
 
-// export default Doughnut;
+export default DoDoughnut;
