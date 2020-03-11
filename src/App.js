@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import MeteoriteTable from "./meteorite-table";
+import MeteoriteTable from "./components/meteorite-table";
 import { Doughnut } from "react-chartjs-2";
 import { formatDataFromSizes } from "./utils/utils";
-import MakeMap from "./map";
+import MakeMap from "./components/map";
 
 class App extends React.Component {
   state = {
@@ -21,12 +21,7 @@ class App extends React.Component {
         }
       ]
     },
-    activeMeteorite: null,
     showLargest100: false
-  };
-
-  showMeteoriteData = meteorite => {
-    this.setState({ activeMeteorite: meteorite });
   };
 
   fetchData = () => {
@@ -37,9 +32,6 @@ class App extends React.Component {
         return response.json();
       })
       .then(data => {
-        if (this.state.showLargest100 === true) {
-          data = data.slice(0, 100);
-        }
         const tableData = data.map(meteorite => {
           const meteoriteCopy = { ...meteorite };
           if (meteoriteCopy.geolocation === undefined) {
@@ -75,18 +67,26 @@ class App extends React.Component {
 
   getLargest100 = () => {
     this.setState(currentState => {
-      return { showLargest100: !currentState.showLargest100 };
+      const slicedMeteorites = [...currentState.meteorites].slice(0, 100);
+      return {
+        meteorites: slicedMeteorites,
+        showLargest100: !currentState.showLargest100
+      };
     });
   };
 
   componentDidUpdate(prevState) {
-    if (prevState.showLargest100 !== this.state.showLargest100) {
+    console.log(this.state.showLargest100);
+    if (
+      this.state.showLargest100 === false &&
+      this.state.meteorites.length === 100
+    ) {
       this.fetchData();
     }
   }
 
   render() {
-    const { meteorites, chartData, activeMeteorite, isLoading } = this.state;
+    const { meteorites, chartData, isLoading } = this.state;
     return (
       <div className="App">
         <div className="mapHeadings">
@@ -94,13 +94,15 @@ class App extends React.Component {
           <button className="heatButton">Toggle Heat Map</button>
         </div>
         {isLoading === false ? (
-          <MakeMap meteorites={meteorites} activeMeteorite={activeMeteorite} />
+          <MakeMap meteorites={meteorites} />
         ) : (
           <p>...loading...</p>
         )}
         <div className="dataControls">
           <div className="largest100Button">
-            <button onClick={this.getLargest100}>Toggle Largest 100</button>
+            <button onClick={this.getLargest100}>
+              Toggle Largest 100 Only
+            </button>
           </div>
           <label htmlFor="">
             Doughnut Data:
