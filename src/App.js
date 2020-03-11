@@ -7,6 +7,7 @@ import DoDoughnut from "./components/doughnut";
 class App extends React.Component {
   state = {
     meteorites: [],
+    largestMeteorites: [],
     isLoading: true,
     chartData: {
       labels: [
@@ -44,7 +45,7 @@ class App extends React.Component {
         return response.json();
       })
       .then(data => {
-        const tableData = data.map(meteorite => {
+        const meteoriteData = data.map(meteorite => {
           const meteoriteCopy = { ...meteorite };
           if (meteoriteCopy.geolocation === undefined) {
             meteoriteCopy.geolocation = {
@@ -62,18 +63,18 @@ class App extends React.Component {
           }
           return meteoriteCopy;
         });
+        const slicedMeteorites = [...meteoriteData].slice(0, 100);
         this.setState({
           isLoading: false,
-          meteorites: tableData
+          meteorites: meteoriteData,
+          largestMeteorites: slicedMeteorites
         });
       });
   };
 
   getLargest100 = () => {
     this.setState(currentState => {
-      const slicedMeteorites = [...currentState.meteorites].slice(0, 100);
       return {
-        meteorites: slicedMeteorites,
         showLargest100: !currentState.showLargest100
       };
     });
@@ -89,17 +90,22 @@ class App extends React.Component {
     this.fetchData();
   }
 
-  componentDidUpdate() {
-    if (
-      this.state.showLargest100 === false &&
-      this.state.meteorites.length === 100
-    ) {
-      this.fetchData();
-    }
-  }
+  componentDidUpdate() {}
 
   render() {
-    const { meteorites, doughnutDataVal, isLoading } = this.state;
+    const {
+      meteorites,
+      largestMeteorites,
+      doughnutDataVal,
+      isLoading,
+      showLargest100
+    } = this.state;
+    let selectedMeteorites;
+    if (showLargest100 === true) {
+      selectedMeteorites = largestMeteorites;
+    } else {
+      selectedMeteorites = meteorites;
+    }
     return (
       <div className="App">
         <div className="mapHeadings">
@@ -107,7 +113,7 @@ class App extends React.Component {
           <button className="heatButton">Toggle Heat Map</button>
         </div>
         {isLoading === false ? (
-          <MakeMap meteorites={meteorites} />
+          <MakeMap meteorites={selectedMeteorites} />
         ) : (
           <p>...loading...</p>
         )}
@@ -128,12 +134,12 @@ class App extends React.Component {
         </div>
         <div className="tableChart">
           {isLoading === false ? (
-            <MeteoriteTable meteorites={meteorites} />
+            <MeteoriteTable meteorites={selectedMeteorites} />
           ) : (
             <p>...loading...</p>
           )}
           <DoDoughnut
-            meteorites={meteorites}
+            meteorites={selectedMeteorites}
             dropdownVal={doughnutDataVal}
             isLoading={isLoading}
           />
