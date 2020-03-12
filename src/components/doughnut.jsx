@@ -74,8 +74,8 @@ class DoDoughnut extends Component {
   render() {
     // this.formatData();
     return (
-      <div>
-        <Doughnut data={this.state.chartData} width={100} height={100} />
+      <div className="doughnutArea">
+        <Doughnut data={this.state.chartData} height={100} width={100} />
       </div>
     );
   }
