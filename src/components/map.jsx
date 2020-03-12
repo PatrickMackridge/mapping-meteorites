@@ -51,12 +51,7 @@ class MakeMap extends React.Component {
           >
             <div id="popup-info">
               <h3>{activeMeteorite.name}</h3>
-              <p id="popup-info">
-                Mass:{" "}
-                {activeMeteorite.mass < 1000
-                  ? activeMeteorite.mass + " g"
-                  : activeMeteorite.mass / 1000 + " kg"}
-              </p>
+              <p id="popup-info">Mass: {activeMeteorite.mass / 1000 + " kg"}</p>
               <p id="popup-info">
                 Geolocation: {activeMeteorite.geolocation.latitude},{" "}
                 {activeMeteorite.geolocation.longitude}

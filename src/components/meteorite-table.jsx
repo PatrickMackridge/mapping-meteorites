@@ -7,7 +7,7 @@ const MeteoriteTable = props => {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Mass (grams)</th>
+            <th>Mass (kg)</th>
             <th>Geolocation</th>
             <th>Year</th>
           </tr>
@@ -17,7 +17,7 @@ const MeteoriteTable = props => {
             <tbody key={meteorite.id}>
               <tr>
                 <td>{meteorite.name}</td>
-                <td>{meteorite.mass}</td>
+                <td>{meteorite.mass / 1000}</td>
                 <td>
                   ({meteorite.geolocation.latitude}
                   °, {meteorite.geolocation.longitude}
