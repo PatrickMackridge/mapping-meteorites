@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { formatSizeData } from "../utils/utils";
+import "../App.css";
 
 class DoDoughnut extends Component {
   state = {
@@ -72,10 +73,10 @@ class DoDoughnut extends Component {
   componentDidMount() {}
 
   render() {
-    // this.formatData();
+    const { chartData } = this.state;
     return (
       <div className="doughnutArea">
-        <Doughnut data={this.state.chartData} height={100} width={100} />
+        <Doughnut data={chartData} height={100} width={100} />
       </div>
     );
   }
