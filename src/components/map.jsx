@@ -26,7 +26,7 @@ class MakeMap extends React.Component {
           attribution='&copy; <a href="https://osm.org.copyright">OpenStreetMap</a> contributors'
         />
         {meteorites.map(meteorite => {
-          return meteorite.geolocation.latitude !== "unknown" ? (
+          return meteorite.geolocation.latitude !== "Unknown" ? (
             <Marker
               key={meteorite.id}
               position={[

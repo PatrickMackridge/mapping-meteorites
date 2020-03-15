@@ -1,18 +1,16 @@
 import React, { Component } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { formatSizeData, formatLargeSizeData } from "../utils/utils";
+import {
+  formatSizeData,
+  formatLargeSizeData,
+  formatHemisphereData
+} from "../utils/utils";
 import "../App.css";
 
 class DoDoughnut extends Component {
   state = {
     chartData: {
-      labels: [
-        "50kg or less",
-        "51kg-100kg",
-        "101kg - 200kg",
-        "201kg-300kg",
-        "More than 300kg"
-      ],
+      labels: [],
       datasets: [
         {
           label: "Meteorite Landings",
@@ -41,7 +39,8 @@ class DoDoughnut extends Component {
   formatData = dropdownVal => {
     if (dropdownVal === "sizeRange") {
       this.formatSizes();
-      // Format chart data here depending on dropdown menu - Pass dropdown value as props - create separate funcs!
+    } else if (dropdownVal === "hemisphere") {
+      this.formatHemispheres();
     } else {
       console.log("Awaiting utils functions...");
     }
@@ -71,6 +70,23 @@ class DoDoughnut extends Component {
         "More than 300kg"
       ];
     }
+    const newData = { ...chartData };
+    newData.datasets[0].data = formattedData;
+    newData.labels = newLabels;
+    this.setState({ chartData: newData, chartCreated: true });
+  };
+
+  formatHemispheres = () => {
+    const { chartData } = this.state;
+    const { meteorites } = this.props;
+    const formattedData = formatHemisphereData(meteorites);
+    const newLabels = [
+      "NE Hem",
+      "SE Hem",
+      "SW Hem",
+      "NW Hem",
+      "Unknown Location"
+    ];
     const newData = { ...chartData };
     newData.datasets[0].data = formattedData;
     newData.labels = newLabels;

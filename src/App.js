@@ -9,30 +9,6 @@ class App extends React.Component {
     meteorites: [],
     largestMeteorites: [],
     isLoading: true,
-    chartData: {
-      labels: [
-        "50kg or less",
-        "51kg-100kg",
-        "101kg - 200kg",
-        "201kg-300kg",
-        ">300kg"
-      ],
-      datasets: [
-        {
-          label: "Meteorite Landings",
-          data: [],
-          backgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56",
-            "#001cac",
-            "#29ac00"
-          ],
-          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#29ac00"],
-          borderColor: "rgb(255, 255, 255)"
-        }
-      ]
-    },
     showLargest100: false,
     doughnutDataVal: "sizeRange"
   };
@@ -49,17 +25,17 @@ class App extends React.Component {
           const meteoriteCopy = { ...meteorite };
           if (meteoriteCopy.geolocation === undefined) {
             meteoriteCopy.geolocation = {
-              latitude: "unknown",
-              longitude: "unknown"
+              latitude: "Unknown",
+              longitude: "Unknown"
             };
           }
           if (meteoriteCopy.year) {
             meteoriteCopy.year = meteoriteCopy.year.slice(0, 4);
           } else if (!meteoriteCopy.year) {
-            meteoriteCopy.year = "unknown";
+            meteoriteCopy.year = "Unknown";
           }
           if (!meteoriteCopy.mass) {
-            meteoriteCopy.mass = "unknown";
+            meteoriteCopy.mass = "Unknown";
           }
           return meteoriteCopy;
         });
@@ -100,12 +76,15 @@ class App extends React.Component {
       isLoading,
       showLargest100
     } = this.state;
+
     let selectedMeteorites;
+
     if (showLargest100 === true) {
       selectedMeteorites = largestMeteorites;
     } else {
       selectedMeteorites = meteorites;
     }
+
     return (
       <div className="App">
         <div className="mapHeadings">
@@ -120,7 +99,7 @@ class App extends React.Component {
         <div className="dataControls">
           <div className="largest100Button">
             <button onClick={this.getLargest100}>
-              Toggle Largest 100 Only
+              {showLargest100 ? "Show Largest 1000" : "Show Largest 100 Only"}
             </button>
           </div>
           <label>

@@ -36,4 +36,35 @@ const formatLargeSizeData = arrayOfMeteorites => {
   return result;
 };
 
-module.exports = { formatSizeData, formatLargeSizeData };
+const formatHemisphereData = arrayOfMeteorites => {
+  let result = [0, 0, 0, 0, 0];
+
+  arrayOfMeteorites.forEach(meteorite => {
+    if (
+      meteorite.geolocation.latitude > 0 &&
+      meteorite.geolocation.longitude > 0
+    ) {
+      result[0] += 1;
+    } else if (
+      meteorite.geolocation.latitude < 0 &&
+      meteorite.geolocation.longitude > 0
+    ) {
+      result[1] += 1;
+    } else if (
+      meteorite.geolocation.latitude < 0 &&
+      meteorite.geolocation.longitude < 0
+    ) {
+      result[2] += 1;
+    } else if (
+      meteorite.geolocation.latitude > 0 &&
+      meteorite.geolocation.longitude < 0
+    ) {
+      result[3] += 1;
+    } else {
+      result[4] += 1;
+    }
+  });
+  return result;
+};
+
+module.exports = { formatSizeData, formatLargeSizeData, formatHemisphereData };
