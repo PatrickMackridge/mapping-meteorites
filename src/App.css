@@ -82,7 +82,7 @@ td {
   cursor: pointer;
   color: #ffffff;
   font-family: Arial;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
   padding: 2px 4px;
 }
@@ -96,6 +96,15 @@ td {
 
 #popup-info {
   color: #2c3531;
+}
+
+select {
+  background-color: #0074b3;
+  color: whitesmoke;
+  border: 1px solid whitesmoke;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 0;
 }
 
 canvas {

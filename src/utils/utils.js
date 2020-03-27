@@ -67,4 +67,27 @@ const formatHemisphereData = arrayOfMeteorites => {
   return result;
 };
 
-module.exports = { formatSizeData, formatLargeSizeData, formatHemisphereData };
+const formatCenturyData = arrayOfMeteorites => {
+  let result = [0, 0, 0, 0, 0];
+  arrayOfMeteorites.forEach(meteorite => {
+    if (meteorite.year < 1700) {
+      result[0] += 1;
+    } else if (meteorite.year < 1800) {
+      result[1] += 1;
+    } else if (meteorite.year < 1900) {
+      result[2] += 1;
+    } else if (meteorite.year < 2000) {
+      result[3] += 1;
+    } else {
+      result[4] += 1;
+    }
+  });
+  return result;
+};
+
+module.exports = {
+  formatSizeData,
+  formatLargeSizeData,
+  formatHemisphereData,
+  formatCenturyData
+};

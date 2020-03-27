@@ -1,7 +1,8 @@
 import {
   formatSizeData,
   formatLargeSizeData,
-  formatHemisphereData
+  formatHemisphereData,
+  formatCenturyData
 } from "./utils";
 
 describe("formatSizeData", () => {
@@ -61,5 +62,23 @@ describe("formatHemisphereData", () => {
       { geolocation: { latitude: "Unknown", longitude: "Unknown" } }
     ];
     expect(formatHemisphereData(data)).toEqual([2, 1, 2, 1, 1]);
+  });
+});
+
+describe("formatCenturyData", () => {
+  it("accepts an empty array and returns an array of [0, 0 ,0 , 0, 0]", () => {
+    expect(formatCenturyData([])).toEqual([0, 0, 0, 0, 0]);
+  });
+  it("accepts an array of objects with years and returns a count of centuries", () => {
+    const input = [
+      { year: 1802 },
+      { year: 2000 },
+      { year: 1728 },
+      { year: 1680 },
+      { year: 1900 },
+      { year: 1924 },
+      { year: 2005 }
+    ];
+    expect(formatCenturyData(input)).toEqual([1, 1, 1, 2, 2]);
   });
 });

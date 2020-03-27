@@ -3,7 +3,8 @@ import { Doughnut } from "react-chartjs-2";
 import {
   formatSizeData,
   formatLargeSizeData,
-  formatHemisphereData
+  formatHemisphereData,
+  formatCenturyData
 } from "../utils/utils";
 import "../App.css";
 
@@ -41,8 +42,8 @@ class DoDoughnut extends Component {
       this.formatSizes();
     } else if (dropdownVal === "hemisphere") {
       this.formatHemispheres();
-    } else {
-      console.log("Awaiting utils functions...");
+    } else if (dropdownVal === "century") {
+      this.formatCenturies();
     }
   };
 
@@ -86,6 +87,23 @@ class DoDoughnut extends Component {
       "SW Hem",
       "NW Hem",
       "Unknown Location"
+    ];
+    const newData = { ...chartData };
+    newData.datasets[0].data = formattedData;
+    newData.labels = newLabels;
+    this.setState({ chartData: newData, chartCreated: true });
+  };
+
+  formatCenturies = () => {
+    const { chartData } = this.state;
+    const { meteorites } = this.props;
+    const formattedData = formatCenturyData(meteorites);
+    const newLabels = [
+      "Pre 1700",
+      "1700-1799",
+      "1800-1899",
+      "1900-1999",
+      "200s"
     ];
     const newData = { ...chartData };
     newData.datasets[0].data = formattedData;
