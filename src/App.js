@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-import MeteoriteTable from "./components/meteorite-table";
-import MakeMap from "./components/map";
-import DoDoughnut from "./components/doughnut";
+import MeteoriteTable from "./components/MeteoriteTable";
+import MakeMap from "./components/MakeMap";
+import DoDoughnut from "./components/DoDoughnut";
 
 class App extends React.Component {
   state = {
@@ -37,6 +37,9 @@ class App extends React.Component {
           if (!meteoriteCopy.mass) {
             meteoriteCopy.mass = "Unknown";
           }
+
+          meteoriteCopy.mass = parseFloat(meteoriteCopy.mass).toFixed(0);
+
           return meteoriteCopy;
         });
         const slicedMeteorites = [...meteoriteData].slice(0, 100);
@@ -87,41 +90,39 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <div className="mapHeadings">
-          <h1>Meteorite Landings</h1>
-          <button className="heatButton">Toggle Heat Map</button>
-        </div>
-        {isLoading === false ? (
-          <MakeMap meteorites={selectedMeteorites} />
-        ) : (
+        <h1>Meteorite Landings</h1>
+        <button className="heatButton">Toggle Heat Map</button>
+        {isLoading === true ? (
           <p>...loading...</p>
+        ) : (
+          <MakeMap meteorites={selectedMeteorites} />
         )}
-        <div className="dataControls">
-          <div className="largest100Button">
-            <button onClick={this.getLargest100}>
+        <div className="tableChart">
+          <div className="table-area">
+            <button className="largest100Button" onClick={this.getLargest100}>
               {showLargest100 ? "Show Largest 1000" : "Show Largest 100 Only"}
             </button>
+            {isLoading === false ? (
+              <MeteoriteTable meteorites={selectedMeteorites} />
+            ) : (
+              <p>...loading...</p>
+            )}
           </div>
-          <label>
-            Doughnut Data:{" "}
-            <select id="" onChange={this.changeDropdown}>
-              <option value="sizeRange">Size Range</option>
-              <option value="hemisphere">Hemisphere</option>
-              <option value="century">Century</option>
-            </select>
-          </label>
-        </div>
-        <div className="tableChart">
-          {isLoading === false ? (
-            <MeteoriteTable meteorites={selectedMeteorites} />
-          ) : (
-            <p>...loading...</p>
-          )}
-          <DoDoughnut
-            meteorites={selectedMeteorites}
-            dropdownVal={doughnutDataVal}
-            isLoading={isLoading}
-          />
+          <div className="doughnutArea">
+            <label>
+              Doughnut Data:{" "}
+              <select id="" onChange={this.changeDropdown}>
+                <option value="sizeRange">Size Range</option>
+                <option value="hemisphere">Hemisphere</option>
+                <option value="century">Century</option>
+              </select>
+            </label>
+            <DoDoughnut
+              meteorites={selectedMeteorites}
+              dropdownVal={doughnutDataVal}
+              isLoading={isLoading}
+            />
+          </div>
         </div>
       </div>
     );

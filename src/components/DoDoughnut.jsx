@@ -97,7 +97,6 @@ class DoDoughnut extends Component {
     const { dropdownVal, meteorites } = this.props;
     if (
       prevProps.dropdownVal !== dropdownVal ||
-      // this.state.chartCreated === false || // Did mount?
       prevProps.meteorites.length !== meteorites.length
     ) {
       this.formatData(dropdownVal);
@@ -109,8 +108,8 @@ class DoDoughnut extends Component {
   render() {
     const { chartData } = this.state;
     return (
-      <div className="doughnutArea">
-        <Doughnut data={chartData} height={100} width={100} />
+      <div className="doughnutContainer">
+        <Doughnut data={chartData} height={300} />
       </div>
     );
   }
