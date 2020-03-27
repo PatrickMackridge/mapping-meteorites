@@ -3,6 +3,7 @@ import "./App.css";
 import MeteoriteTable from "./components/MeteoriteTable";
 import MakeMap from "./components/MakeMap";
 import DoDoughnut from "./components/DoDoughnut";
+import HeatMap from "./components/HeatMap";
 
 class App extends React.Component {
   state = {
@@ -10,7 +11,8 @@ class App extends React.Component {
     largestMeteorites: [],
     isLoading: true,
     showLargest100: false,
-    doughnutDataVal: "sizeRange"
+    doughnutDataVal: "sizeRange",
+    heatMap: false
   };
 
   fetchData = () => {
@@ -59,6 +61,12 @@ class App extends React.Component {
     });
   };
 
+  toggleHeatMap = () => {
+    this.setState(currentState => {
+      return { heatMap: !currentState.heatMap };
+    });
+  };
+
   changeDropdown = event => {
     if (event.target.value !== this.state.doughnutDataVal) {
       this.setState({ doughnutDataVal: event.target.value });
@@ -77,6 +85,7 @@ class App extends React.Component {
       largestMeteorites,
       doughnutDataVal,
       isLoading,
+      heatMap,
       showLargest100
     } = this.state;
 
@@ -91,9 +100,13 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Meteorite Landings</h1>
-        <button className="heatButton">Toggle Heat Map</button>
+        <button className="heatButton" onClick={this.toggleHeatMap}>
+          Heat Map
+        </button>
         {isLoading === true ? (
           <p>...loading...</p>
+        ) : heatMap === true ? (
+          <HeatMap meteorites={meteorites} />
         ) : (
           <MakeMap meteorites={selectedMeteorites} />
         )}
@@ -102,10 +115,10 @@ class App extends React.Component {
             <button className="largest100Button" onClick={this.getLargest100}>
               {showLargest100 ? "Show Largest 1000" : "Show Largest 100 Only"}
             </button>
-            {isLoading === false ? (
-              <MeteoriteTable meteorites={selectedMeteorites} />
-            ) : (
+            {isLoading === true ? (
               <p>...loading...</p>
+            ) : (
+              <MeteoriteTable meteorites={selectedMeteorites} />
             )}
           </div>
           <div className="doughnutArea">
