@@ -106,7 +106,7 @@ class App extends React.Component {
         {isLoading === true ? (
           <p>...loading...</p>
         ) : heatMap === true ? (
-          <HeatMap meteorites={meteorites} />
+          <HeatMap meteorites={selectedMeteorites} />
         ) : (
           <MakeMap meteorites={selectedMeteorites} />
         )}

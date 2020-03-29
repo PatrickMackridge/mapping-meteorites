@@ -85,9 +85,23 @@ const formatCenturyData = arrayOfMeteorites => {
   return result;
 };
 
+const formatHeatMapData = arrayOfMeteorites => {
+  const filteredData = arrayOfMeteorites.filter(meteorite => {
+    return (
+      !isNaN(meteorite.geolocation.latitude) &&
+      !isNaN(meteorite.geolocation.longitude)
+    );
+  });
+  const formattedData = filteredData.map(meteorite => {
+    return { ...meteorite.geolocation, intensity: 100 };
+  });
+  return formattedData;
+};
+
 module.exports = {
   formatSizeData,
   formatLargeSizeData,
   formatHemisphereData,
-  formatCenturyData
+  formatCenturyData,
+  formatHeatMapData
 };
