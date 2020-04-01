@@ -3,7 +3,6 @@ import "./App.css";
 import MeteoriteTable from "./components/MeteoriteTable";
 import MakeMap from "./components/MakeMap";
 import DoDoughnut from "./components/DoDoughnut";
-import HeatMap from "./components/HeatMap";
 
 class App extends React.Component {
   state = {
@@ -105,10 +104,8 @@ class App extends React.Component {
         </button>
         {isLoading === true ? (
           <p>...loading...</p>
-        ) : heatMap === true ? (
-          <HeatMap meteorites={selectedMeteorites} />
         ) : (
-          <MakeMap meteorites={selectedMeteorites} />
+          <MakeMap meteorites={selectedMeteorites} heatMap={heatMap} />
         )}
         <div className="tableChart">
           <div className="table-area">

@@ -1,10 +1,12 @@
 import React from "react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import HeatMap from "./HeatMap";
 
 class MakeMap extends React.Component {
   state = {
     meteorites: this.props.meteorites,
-    activeMeteorite: null
+    activeMeteorite: null,
+    heatMap: this.props.heatMap
   };
 
   showMeteoriteData = meteorite => {
@@ -15,30 +17,37 @@ class MakeMap extends React.Component {
     if (this.props.meteorites !== prevProps.meteorites) {
       this.setState({ meteorites: this.props.meteorites });
     }
+    if (this.props.heatMap !== prevProps.heatMap) {
+      this.setState({ heatMap: this.props.heatMap });
+    }
   }
 
   render() {
-    const { meteorites, activeMeteorite } = this.state;
+    const { meteorites, activeMeteorite, heatMap } = this.state;
     return (
       <Map center={[20.0, 20.0]} zoom={2}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://osm.org.copyright">OpenStreetMap</a> contributors'
         />
-        {meteorites.map(meteorite => {
-          return meteorite.geolocation.latitude !== "Unknown" ? (
-            <Marker
-              key={meteorite.id}
-              position={[
-                meteorite.geolocation.latitude,
-                meteorite.geolocation.longitude
-              ]}
-              onClick={() => {
-                this.showMeteoriteData(meteorite);
-              }}
-            ></Marker>
-          ) : null;
-        })}
+        {heatMap === true ? (
+          <HeatMap meteorites={this.props.meteorites} />
+        ) : (
+          meteorites.map(meteorite => {
+            return meteorite.geolocation.latitude !== "Unknown" ? (
+              <Marker
+                key={meteorite.id}
+                position={[
+                  meteorite.geolocation.latitude,
+                  meteorite.geolocation.longitude
+                ]}
+                onClick={() => {
+                  this.showMeteoriteData(meteorite);
+                }}
+              ></Marker>
+            ) : null;
+          })
+        )}
         {activeMeteorite && (
           <Popup
             position={[

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { TileLayer, Map } from "react-leaflet";
 import HeatMapLayer from "react-leaflet-heatmap-layer";
 import { formatHeatMapData } from "../utils/utils.js";
 
@@ -24,20 +23,15 @@ class HeatMap extends Component {
 
   render() {
     const { locationData } = this.state;
-    // console.log(locationData);
     return (
-      <Map center={[20.0, 20.0]} zoom={2}>
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://osm.org.copyright">OpenStreetMap</a> contributors'
-        />
-        <HeatMapLayer
-          points={locationData}
-          longitudeExtractor={geolocation => geolocation.longitude}
-          latitudeExtractor={geolocation => geolocation.latitude}
-          intensityExtractor={marker => marker.intensity}
-        />
-      </Map>
+      <HeatMapLayer
+        points={locationData}
+        longitudeExtractor={geolocation => geolocation.longitude}
+        latitudeExtractor={geolocation => geolocation.latitude}
+        intensityExtractor={marker => marker.intensity}
+        radius={25}
+        blur={10}
+      />
     );
   }
 }
