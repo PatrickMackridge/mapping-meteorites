@@ -5,11 +5,11 @@ import { formatHeatMapData } from "../utils/utils.js";
 class HeatMap extends Component {
   state = {
     meteorites: this.props.meteorites,
-    locationData: []
+    locationData: [],
   };
 
   componentDidMount() {
-    this.setState(currentState => {
+    this.setState((currentState) => {
       const newLocationData = formatHeatMapData(currentState.meteorites);
       return { locationData: newLocationData };
     });
@@ -26,9 +26,9 @@ class HeatMap extends Component {
     return (
       <HeatMapLayer
         points={locationData}
-        longitudeExtractor={geolocation => geolocation.longitude}
-        latitudeExtractor={geolocation => geolocation.latitude}
-        intensityExtractor={marker => marker.intensity}
+        longitudeExtractor={(geolocation) => geolocation.longitude}
+        latitudeExtractor={(geolocation) => geolocation.latitude}
+        intensityExtractor={(marker) => marker.intensity}
         radius={25}
         blur={10}
       />

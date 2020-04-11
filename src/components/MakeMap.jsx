@@ -1,16 +1,12 @@
 import React from "react";
-import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import { Map, TileLayer } from "react-leaflet";
 import HeatMap from "./HeatMap";
+import MarkerMap from "./MarkerMap";
 
 class MakeMap extends React.Component {
   state = {
     meteorites: this.props.meteorites,
-    activeMeteorite: null,
-    heatMap: this.props.heatMap
-  };
-
-  showMeteoriteData = meteorite => {
-    this.setState({ activeMeteorite: meteorite });
+    heatMap: this.props.heatMap,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -23,7 +19,7 @@ class MakeMap extends React.Component {
   }
 
   render() {
-    const { meteorites, activeMeteorite, heatMap } = this.state;
+    const { meteorites, heatMap } = this.state;
     return (
       <Map center={[20.0, 20.0]} zoom={2}>
         <TileLayer
@@ -33,41 +29,7 @@ class MakeMap extends React.Component {
         {heatMap === true ? (
           <HeatMap meteorites={this.props.meteorites} />
         ) : (
-          meteorites.map(meteorite => {
-            return meteorite.geolocation.latitude !== "Unknown" ? (
-              <Marker
-                key={meteorite.id}
-                position={[
-                  meteorite.geolocation.latitude,
-                  meteorite.geolocation.longitude
-                ]}
-                onClick={() => {
-                  this.showMeteoriteData(meteorite);
-                }}
-              ></Marker>
-            ) : null;
-          })
-        )}
-        {activeMeteorite && (
-          <Popup
-            position={[
-              activeMeteorite.geolocation.latitude,
-              activeMeteorite.geolocation.longitude
-            ]}
-            onClose={() => {
-              this.showMeteoriteData(null);
-            }}
-          >
-            <div id="popup-info">
-              <h3>{activeMeteorite.name}</h3>
-              <p id="popup-info">Mass: {activeMeteorite.mass / 1000 + " kg"}</p>
-              <p id="popup-info">
-                Geolocation: {activeMeteorite.geolocation.latitude},{" "}
-                {activeMeteorite.geolocation.longitude}
-              </p>
-              <p id="popup-info">Year: {activeMeteorite.year}</p>
-            </div>
-          </Popup>
+          <MarkerMap meteorites={meteorites} />
         )}
       </Map>
     );
