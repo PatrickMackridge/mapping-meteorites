@@ -31,8 +31,8 @@ class MarkerMap extends Component {
                   <h3>{meteorite.name}</h3>
                   <p id="popup-info">Mass: {meteorite.mass / 1000 + " kg"}</p>
                   <p id="popup-info">
-                    Geolocation: {meteorite.geolocation.latitude},{" "}
-                    {meteorite.geolocation.longitude}
+                    Geolocation: {meteorite.geolocation.latitude} lat.,{" "}
+                    {meteorite.geolocation.longitude} long.
                   </p>
                   <p id="popup-info">Year: {meteorite.year}</p>
                 </div>
