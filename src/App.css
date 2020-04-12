@@ -1,7 +1,5 @@
 body {
-  background: #000
-    url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top
-    center;
+  background: #000 url(./assets/star_background.png) top center repeat;
   z-index: 0;
 }
 
@@ -37,14 +35,14 @@ p {
 }
 
 .tableContainer {
+  margin: 0 auto 5%;
+  width: 95vw;
   overflow-y: auto;
   overflow-x: hidden;
   height: 80vh;
-  width: 50vw;
   padding-right: 4px;
-  margin: 0 0 15px 25px;
   border: 1px solid whitesmoke;
-  scrollbar-width: thin;
+  scrollbar-width: 4px;
 }
 
 .tableContainer::-webkit-scrollbar {
@@ -60,8 +58,8 @@ p {
 table {
   border-bottom: 1px solid whitesmoke;
   padding: 0;
-  width: 50vw;
   table-layout: fixed;
+  width: 95vw;
 }
 
 thead {
@@ -75,9 +73,11 @@ thead {
 th {
   position: sticky;
   border: 1px solid whitesmoke;
+  font-size: 0.9em;
 }
 
 td {
+  font-size: 0.9em;
   border-collapse: collapse;
   background-color: whitesmoke;
   overflow-wrap: break-word;
@@ -120,13 +120,14 @@ select {
 }
 
 .doughnutContainer {
-  width: 45vw;
+  width: 95vw;
   height: 80vh;
-  margin-left: 4%;
+  margin: 4%;
 }
 
 .tableChart {
   display: flex;
+  flex-direction: column;
 }
 
 .chartjs-size-monitor {
@@ -152,7 +153,6 @@ label {
 }
 
 .heatButton {
-  display: inline-block;
   box-shadow: inset 0px 1px 0px 0px #f5978e;
   background: linear-gradient(to bottom, #e0bb00 5%, #e80c0c 100%);
   background-color: #e0bb00;
@@ -165,6 +165,8 @@ label {
   font-weight: bold;
   padding: 2px 4px;
   text-shadow: 0px 1px 0px #810e05;
+  display: block;
+  margin-left: 41%;
 }
 
 .heatButton:active {
@@ -206,31 +208,35 @@ a:visited {
   color: #fcfcfc;
 }
 
-@media only screen and (max-device-width: 768px) {
-  .tableChart {
-    flex-direction: column;
-  }
-
+@media only screen and (min-device-width: 768px) {
   .tableContainer {
-    margin: 0 auto 5%;
-    width: 95vw;
+    width: 50vw;
+    margin: 0 0 15px 25px;
   }
 
   table {
-    width: 95vw;
+    width: 50vw;
+  }
+
+  th {
+    font-size: 1em;
   }
 
   td {
-    font-size: 0.9em;
-  }
-
-  .heatButton {
-    display: block;
-    margin-left: 35%;
+    font-size: 1em;
   }
 
   .doughnutContainer {
-    width: 95vw;
-    margin: 4%;
+    width: 45vw;
+    margin: 0 0 0 4%;
+  }
+
+  .tableChart {
+    flex-direction: row;
+  }
+
+  .heatButton {
+    display: inline-block;
+    margin: 0;
   }
 }
