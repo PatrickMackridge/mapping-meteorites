@@ -8,26 +8,26 @@ class App extends React.Component {
   state = {
     meteorites: [],
     largestMeteorites: [],
+    doughnutDataVal: "sizeRange",
     isLoading: true,
     showLargest100: false,
-    doughnutDataVal: "sizeRange",
-    heatMap: false
+    heatMap: false,
   };
 
   fetchData = () => {
     fetch(
       `https://data.nasa.gov/resource/gh4g-9sfh.json?$order=mass DESC&$where=mass > 0`
     )
-      .then(response => {
+      .then((response) => {
         return response.json();
       })
-      .then(data => {
-        const meteoriteData = data.map(meteorite => {
+      .then((data) => {
+        const meteoriteData = data.map((meteorite) => {
           const meteoriteCopy = { ...meteorite };
           if (meteoriteCopy.geolocation === undefined) {
             meteoriteCopy.geolocation = {
               latitude: "Unknown",
-              longitude: "Unknown"
+              longitude: "Unknown",
             };
           }
           if (meteoriteCopy.year) {
@@ -47,26 +47,26 @@ class App extends React.Component {
         this.setState({
           isLoading: false,
           meteorites: meteoriteData,
-          largestMeteorites: slicedMeteorites
+          largestMeteorites: slicedMeteorites,
         });
       });
   };
 
   getLargest100 = () => {
-    this.setState(currentState => {
+    this.setState((currentState) => {
       return {
-        showLargest100: !currentState.showLargest100
+        showLargest100: !currentState.showLargest100,
       };
     });
   };
 
   toggleHeatMap = () => {
-    this.setState(currentState => {
+    this.setState((currentState) => {
       return { heatMap: !currentState.heatMap };
     });
   };
 
-  changeDropdown = event => {
+  changeDropdown = (event) => {
     if (event.target.value !== this.state.doughnutDataVal) {
       this.setState({ doughnutDataVal: event.target.value });
     }
@@ -85,7 +85,7 @@ class App extends React.Component {
       doughnutDataVal,
       isLoading,
       heatMap,
-      showLargest100
+      showLargest100,
     } = this.state;
 
     let selectedMeteorites;

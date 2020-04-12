@@ -4,7 +4,7 @@ import {
   formatSizeData,
   formatLargeSizeData,
   formatHemisphereData,
-  formatCenturyData
+  formatCenturyData,
 } from "../utils/utils";
 import "../App.css";
 
@@ -21,23 +21,23 @@ class DoDoughnut extends Component {
             "#36A2EB",
             "#FFCE56",
             "#001cac",
-            "#29ac00"
+            "#29ac00",
           ],
           hoverBackgroundColor: [
             "#FF6384",
             "#36A2EB",
             "#FFCE56",
             "#001cac",
-            "#29ac00"
+            "#29ac00",
           ],
-          borderColor: "rgb(255, 255, 255)"
-        }
-      ]
+          borderColor: "rgb(255, 255, 255)",
+        },
+      ],
     },
-    chartCreated: false
+    chartCreated: false,
   };
 
-  formatData = dropdownVal => {
+  formatData = (dropdownVal) => {
     if (dropdownVal === "sizeRange") {
       this.formatSizes();
     } else if (dropdownVal === "hemisphere") {
@@ -59,7 +59,7 @@ class DoDoughnut extends Component {
         "501kg-1000kg",
         "1001kg - 2000kg",
         "2001kg-5000kg",
-        "More than 5000kg"
+        "More than 5000kg",
       ];
     } else {
       formattedData = formatSizeData(meteorites);
@@ -68,7 +68,7 @@ class DoDoughnut extends Component {
         "51kg-100kg",
         "101kg - 200kg",
         "201kg-300kg",
-        "More than 300kg"
+        "More than 300kg",
       ];
     }
     const newData = { ...chartData };
@@ -86,7 +86,7 @@ class DoDoughnut extends Component {
       "SE Hem",
       "SW Hem",
       "NW Hem",
-      "Unknown Location"
+      "Unknown Location",
     ];
     const newData = { ...chartData };
     newData.datasets[0].data = formattedData;
@@ -103,7 +103,7 @@ class DoDoughnut extends Component {
       "1700-1799",
       "1800-1899",
       "1900-1999",
-      "200s"
+      "200s",
     ];
     const newData = { ...chartData };
     newData.datasets[0].data = formattedData;
@@ -125,9 +125,10 @@ class DoDoughnut extends Component {
 
   render() {
     const { chartData } = this.state;
+    const options = { maintainAspectRatio: false };
     return (
       <div className="doughnutContainer">
-        <Doughnut data={chartData} height={300} />
+        <Doughnut data={chartData} options={options} />
       </div>
     );
   }
