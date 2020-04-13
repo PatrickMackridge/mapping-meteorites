@@ -1,7 +1,7 @@
-const formatSizeData = arrayOfMeteorites => {
+const formatSizeData = (arrayOfMeteorites) => {
   let result = [0, 0, 0, 0, 0];
 
-  arrayOfMeteorites.forEach(meteorite => {
+  arrayOfMeteorites.forEach((meteorite) => {
     if (meteorite.mass <= 50000) {
       result[0] += 1;
     } else if (meteorite.mass <= 100000) {
@@ -17,10 +17,10 @@ const formatSizeData = arrayOfMeteorites => {
   return result;
 };
 
-const formatLargeSizeData = arrayOfMeteorites => {
+const formatLargeSizeData = (arrayOfMeteorites) => {
   let result = [0, 0, 0, 0, 0];
 
-  arrayOfMeteorites.forEach(meteorite => {
+  arrayOfMeteorites.forEach((meteorite) => {
     if (meteorite.mass <= 500000) {
       result[0] += 1;
     } else if (meteorite.mass <= 1000000) {
@@ -36,10 +36,10 @@ const formatLargeSizeData = arrayOfMeteorites => {
   return result;
 };
 
-const formatHemisphereData = arrayOfMeteorites => {
+const formatHemisphereData = (arrayOfMeteorites) => {
   let result = [0, 0, 0, 0, 0];
 
-  arrayOfMeteorites.forEach(meteorite => {
+  arrayOfMeteorites.forEach((meteorite) => {
     if (
       meteorite.geolocation.latitude > 0 &&
       meteorite.geolocation.longitude > 0
@@ -67,9 +67,9 @@ const formatHemisphereData = arrayOfMeteorites => {
   return result;
 };
 
-const formatCenturyData = arrayOfMeteorites => {
+const formatCenturyData = (arrayOfMeteorites) => {
   let result = [0, 0, 0, 0, 0];
-  arrayOfMeteorites.forEach(meteorite => {
+  arrayOfMeteorites.forEach((meteorite) => {
     if (meteorite.year < 1700) {
       result[0] += 1;
     } else if (meteorite.year < 1800) {
@@ -85,23 +85,23 @@ const formatCenturyData = arrayOfMeteorites => {
   return result;
 };
 
-const formatHeatMapData = arrayOfMeteorites => {
-  const filteredData = arrayOfMeteorites.filter(meteorite => {
+const formatHeatMapData = (arrayOfMeteorites) => {
+  const filteredData = arrayOfMeteorites.filter((meteorite) => {
     return (
       !isNaN(meteorite.geolocation.latitude) &&
       !isNaN(meteorite.geolocation.longitude)
     );
   });
-  const formattedData = filteredData.map(meteorite => {
+  const formattedData = filteredData.map((meteorite) => {
     return { ...meteorite.geolocation, intensity: 100 };
   });
   return formattedData;
 };
 
-module.exports = {
+export {
   formatSizeData,
   formatLargeSizeData,
   formatHemisphereData,
   formatCenturyData,
-  formatHeatMapData
+  formatHeatMapData,
 };
