@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/meteorite-landings/static/css/main.6658e9e0.chunk.css",
-    "main.js": "/meteorite-landings/static/js/main.02ae7c42.chunk.js",
-    "main.js.map": "/meteorite-landings/static/js/main.02ae7c42.chunk.js.map",
-    "runtime-main.js": "/meteorite-landings/static/js/runtime-main.6e874836.js",
-    "runtime-main.js.map": "/meteorite-landings/static/js/runtime-main.6e874836.js.map",
-    "static/js/2.f5451926.chunk.js": "/meteorite-landings/static/js/2.f5451926.chunk.js",
-    "static/js/2.f5451926.chunk.js.map": "/meteorite-landings/static/js/2.f5451926.chunk.js.map",
-    "index.html": "/meteorite-landings/index.html",
-    "precache-manifest.c2e4c96579014c7638d5d80966a911d4.js": "/meteorite-landings/precache-manifest.c2e4c96579014c7638d5d80966a911d4.js",
-    "service-worker.js": "/meteorite-landings/service-worker.js",
-    "static/css/main.6658e9e0.chunk.css.map": "/meteorite-landings/static/css/main.6658e9e0.chunk.css.map",
-    "static/js/2.f5451926.chunk.js.LICENSE.txt": "/meteorite-landings/static/js/2.f5451926.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/meteorite-landings/static/media/star_background.6494ab5b.png"
+    "main.css": "/mapping-meteorites/static/css/main.a27ea830.chunk.css",
+    "main.js": "/mapping-meteorites/static/js/main.02ae7c42.chunk.js",
+    "main.js.map": "/mapping-meteorites/static/js/main.02ae7c42.chunk.js.map",
+    "runtime-main.js": "/mapping-meteorites/static/js/runtime-main.139c14b4.js",
+    "runtime-main.js.map": "/mapping-meteorites/static/js/runtime-main.139c14b4.js.map",
+    "static/js/2.f7ce171a.chunk.js": "/mapping-meteorites/static/js/2.f7ce171a.chunk.js",
+    "static/js/2.f7ce171a.chunk.js.map": "/mapping-meteorites/static/js/2.f7ce171a.chunk.js.map",
+    "index.html": "/mapping-meteorites/index.html",
+    "precache-manifest.4feb6db5137e00230b26bbae0f0fad53.js": "/mapping-meteorites/precache-manifest.4feb6db5137e00230b26bbae0f0fad53.js",
+    "service-worker.js": "/mapping-meteorites/service-worker.js",
+    "static/css/main.a27ea830.chunk.css.map": "/mapping-meteorites/static/css/main.a27ea830.chunk.css.map",
+    "static/js/2.f7ce171a.chunk.js.LICENSE.txt": "/mapping-meteorites/static/js/2.f7ce171a.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/mapping-meteorites/static/media/star_background.6494ab5b.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.6e874836.js",
-    "static/js/2.f5451926.chunk.js",
-    "static/css/main.6658e9e0.chunk.css",
+    "static/js/runtime-main.139c14b4.js",
+    "static/js/2.f7ce171a.chunk.js",
+    "static/css/main.a27ea830.chunk.css",
     "static/js/main.02ae7c42.chunk.js"
   ]
 }
