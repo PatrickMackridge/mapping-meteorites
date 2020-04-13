@@ -4,7 +4,7 @@ Welcome to the repository for my meteorite data visualisation React app. The dat
 
 This app started life as a two day sprint I did whilst at Northcoders coding bootcamp. Originally it was the result of me and another Northcoders student pairing, before I forked it to complete the app in my own time over the next few weeks.
 
-The hosted version can be found here: http://PatrickMackridge.github.io/meteorite-landings
+The hosted version can be found here: https://patrickmackridge.github.io/mapping-meteorites/
 
 Alternatively, see below for instructions on how to run this repo locally on your machine!
 
