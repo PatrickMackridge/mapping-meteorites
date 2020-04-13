@@ -98,7 +98,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <h1>Meteorite Landings</h1>
+        <h1>Mapping Meteorites</h1>
         <button className="heatButton" onClick={this.toggleHeatMap}>
           Heat Map
         </button>
