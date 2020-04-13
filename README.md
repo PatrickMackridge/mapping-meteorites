@@ -10,9 +10,9 @@ Alternatively, see below for instructions on how to run this repo locally on you
 
 The data visualisation includes maps, tables and charts, and was done using a combination of:
 
-- react-chartjs-2
 - react-leaflet
 - react-leaflet-heatmap-layer
+- react-chartjs-2
 
 I would strongly recommend all of the above libraries for anyone interested in JavaScript data visualisation.
 
