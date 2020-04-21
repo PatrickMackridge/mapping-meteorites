@@ -5,7 +5,8 @@ body {
 
 .App {
   text-align: center;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .leaflet-container {
