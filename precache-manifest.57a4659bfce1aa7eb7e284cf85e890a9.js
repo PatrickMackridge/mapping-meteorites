@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8a74b233db87ef158aa00c8ba9f49656",
+    "revision": "67c08f3355a5d2a393c511dd7e10af7d",
     "url": "/mapping-meteorites/index.html"
   },
   {
-    "revision": "fb4c9185c83fabccad48",
-    "url": "/mapping-meteorites/static/css/main.a27ea830.chunk.css"
+    "revision": "3d6fce741331850c24b2",
+    "url": "/mapping-meteorites/static/css/main.f6cc6e93.chunk.css"
   },
   {
     "revision": "db996c15ab5e18b9851f",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mapping-meteorites/static/js/2.f7ce171a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fb4c9185c83fabccad48",
+    "revision": "3d6fce741331850c24b2",
     "url": "/mapping-meteorites/static/js/main.edbc0a2c.chunk.js"
   },
   {

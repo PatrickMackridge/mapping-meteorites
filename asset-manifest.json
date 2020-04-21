@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/mapping-meteorites/static/css/main.a27ea830.chunk.css",
+    "main.css": "/mapping-meteorites/static/css/main.f6cc6e93.chunk.css",
     "main.js": "/mapping-meteorites/static/js/main.edbc0a2c.chunk.js",
     "main.js.map": "/mapping-meteorites/static/js/main.edbc0a2c.chunk.js.map",
     "runtime-main.js": "/mapping-meteorites/static/js/runtime-main.139c14b4.js",
@@ -8,16 +8,16 @@
     "static/js/2.f7ce171a.chunk.js": "/mapping-meteorites/static/js/2.f7ce171a.chunk.js",
     "static/js/2.f7ce171a.chunk.js.map": "/mapping-meteorites/static/js/2.f7ce171a.chunk.js.map",
     "index.html": "/mapping-meteorites/index.html",
-    "precache-manifest.84e5b91cc85da0e75f5e5ec33dae23fd.js": "/mapping-meteorites/precache-manifest.84e5b91cc85da0e75f5e5ec33dae23fd.js",
+    "precache-manifest.57a4659bfce1aa7eb7e284cf85e890a9.js": "/mapping-meteorites/precache-manifest.57a4659bfce1aa7eb7e284cf85e890a9.js",
     "service-worker.js": "/mapping-meteorites/service-worker.js",
-    "static/css/main.a27ea830.chunk.css.map": "/mapping-meteorites/static/css/main.a27ea830.chunk.css.map",
+    "static/css/main.f6cc6e93.chunk.css.map": "/mapping-meteorites/static/css/main.f6cc6e93.chunk.css.map",
     "static/js/2.f7ce171a.chunk.js.LICENSE.txt": "/mapping-meteorites/static/js/2.f7ce171a.chunk.js.LICENSE.txt",
     "static/media/App.css": "/mapping-meteorites/static/media/star_background.6494ab5b.png"
   },
   "entrypoints": [
     "static/js/runtime-main.139c14b4.js",
     "static/js/2.f7ce171a.chunk.js",
-    "static/css/main.a27ea830.chunk.css",
+    "static/css/main.f6cc6e93.chunk.css",
     "static/js/main.edbc0a2c.chunk.js"
   ]
 }
